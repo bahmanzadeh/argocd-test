@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apex-ces
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      directories:
+      - path: apex-dev-dp3-pks/apex-ces/*
+      repoURL: https://eos2git.cec.lab.emc.com/DTC/apex-dev-argo-sync.git
+      revision: HEAD
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      destination:
+        namespace: '{{path.basename}}'
+        server: https://apex-dev.dp3.pks.dell.com:8443
+      project: apex-ces
+      source:
+        path: '{{path}}'
+        repoURL: https://eos2git.cec.lab.emc.com/DTC/apex-dev-argo-sync.git
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
+        - FailOnSharedResource=true
+        - ApplyOutOfSyncOnly=true
