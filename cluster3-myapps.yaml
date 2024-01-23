@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: apex-ces
-  namespace: argocd
+  name: cluster3-myapps
+  namespace: default
 spec:
   generators:
   - git:
       directories:
-      - path: apex-dev-dp3-pks/apex-ces/*
-      repoURL: https://eos2git.cec.lab.emc.com/DTC/apex-dev-argo-sync.git
+      - path: cluster3/myapps/*
+      repoURL: https://github.com/bahmanzadeh/argocd-test.git
       revision: HEAD
   template:
     metadata:
@@ -16,11 +16,11 @@ spec:
     spec:
       destination:
         namespace: '{{path.basename}}'
-        server: https://apex-dev.dp3.pks.dell.com:8443
-      project: apex-ces
+        server: https://192.168.122.198:8443
+      project: myapps
       source:
         path: '{{path}}'
-        repoURL: https://eos2git.cec.lab.emc.com/DTC/apex-dev-argo-sync.git
+        repoURL: https://192.168.122.198:8443
         targetRevision: HEAD
       syncPolicy:
         automated:
