@@ -17,7 +17,7 @@ spec:
       destination:
         namespace: '{{path.basename}}'
         server: https://192.168.122.198:8443
-      project: myapps
+      project: default
       source:
         path: '{{path}}'
         repoURL: https://github.com/bahmanzadeh/argocd-test.git
