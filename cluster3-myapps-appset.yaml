@@ -20,7 +20,7 @@ spec:
       project: myapps
       source:
         path: '{{path}}'
-        repoURL: https://192.168.122.198:8443
+        repoURL: https://github.com/bahmanzadeh/argocd-test.git
         targetRevision: HEAD
       syncPolicy:
         automated:
