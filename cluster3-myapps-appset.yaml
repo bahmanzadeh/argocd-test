@@ -16,7 +16,7 @@ spec:
     spec:
       destination:
         namespace: '{{path.basename}}'
-        server: https://192.168.122.198:8443
+        server: https://kubernetes.default.svc
       project: default
       source:
         path: '{{path}}'
@@ -27,5 +27,5 @@ spec:
           prune: true
         syncOptions:
         - CreateNamespace=true
-        - FailOnSharedResource=true
+        #- FailOnSharedResource=true
         - ApplyOutOfSyncOnly=true
